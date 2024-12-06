@@ -60,7 +60,7 @@ def chatbot_page():
 
         # Генерация ответа
         with st.spinner("Перечитываю книгу..."):
-            context = "\n".join([doc.page_content for doc in retriever.get_relevant_documents(user_input)])
+            context = "\n".join([doc.page_content for doc in retriever.invoke(user_input)])
             history = "\n".join(
                 f"Вопрос: {entry['content']}" if entry["role"] == "user" else f"Ответ: {entry['content']}"
                 for entry in st.session_state.chat_history
